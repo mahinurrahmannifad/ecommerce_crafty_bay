@@ -9,13 +9,13 @@ class AppLocalizationsBn extends AppLocalizations {
   AppLocalizationsBn([String locale = 'bn']) : super(locale);
 
   @override
-  String get version => 'Version [bn]';
+  String get version => 'সংস্করণ';
 
   @override
-  String get welcomeBack => 'Welcome Back [bn]';
+  String get welcomeBack => 'ফিরে আসার জন্য স্বাগতম';
 
   @override
-  String get enterYourEmailAndPassword => 'Enter your email and password [bn]';
+  String get enterYourEmailAndPassword => 'আপনার ইমেইল এবং পাসওয়ার্ড লিখুন';
 
   @override
   String get email => 'ইমেইল';
@@ -25,4 +25,55 @@ class AppLocalizationsBn extends AppLocalizations {
 
   @override
   String get signIn => 'সাইন ইন';
+
+  @override
+  String get registerYourAccount => 'আপনার অ্যাকাউন্ট নিবন্ধন করুন';
+
+  @override
+  String get getStartedWithYourDetails => 'আপনার বিবরণ দিয়ে শুরু করুন';
+
+  @override
+  String get signUp => 'সাইন আপ';
+
+  @override
+  String get firstName => 'নামের প্রথম অংশ';
+
+  @override
+  String get lastName => 'নামের শেষ অংশ';
+
+  @override
+  String get phone => 'ফোন';
+
+  @override
+  String get deliveryAddress => 'ডেলিভারির ঠিকানা';
+
+  @override
+  String get enterYourOtpCode => 'আপনার ওটিপি কোড লিখুন';
+
+  @override
+  String get aFourDigitCodeHasBeenSent => 'আপনার ইমেলে একটি 4 সংখ্যার কোড পাঠানো হয়েছে';
+
+  @override
+  String get verify => 'যাচাই করুন';
+
+  @override
+  String get seeAll => 'সব দেখুন';
+
+  @override
+  String get categories => 'বিভাগ';
+
+  @override
+  String get popular => 'জনপ্রিয়';
+
+  @override
+  String get special => 'বিশেষ';
+
+  @override
+  String get sNew => 'নতুন';
+
+  @override
+  String get wishlist => 'ইচ্ছা তালিকা';
+
+  @override
+  String get productDetails => 'পণ্যের বিবরণ';
 }

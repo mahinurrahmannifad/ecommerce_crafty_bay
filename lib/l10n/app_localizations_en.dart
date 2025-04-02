@@ -25,4 +25,55 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get signIn => 'Sign In';
+
+  @override
+  String get registerYourAccount => 'Register your account';
+
+  @override
+  String get getStartedWithYourDetails => 'Get started with your details';
+
+  @override
+  String get signUp => 'Sign Up';
+
+  @override
+  String get firstName => 'First name';
+
+  @override
+  String get lastName => 'Last name';
+
+  @override
+  String get phone => 'Phone';
+
+  @override
+  String get deliveryAddress => 'Delivery Address';
+
+  @override
+  String get enterYourOtpCode => 'Enter Your Otp Code';
+
+  @override
+  String get aFourDigitCodeHasBeenSent => 'A 4 digits of code has been sent to your email';
+
+  @override
+  String get verify => 'Verify';
+
+  @override
+  String get seeAll => 'See All';
+
+  @override
+  String get categories => 'Categories';
+
+  @override
+  String get popular => 'Popular';
+
+  @override
+  String get special => 'Special';
+
+  @override
+  String get sNew => 'New';
+
+  @override
+  String get wishlist => 'Wishlist';
+
+  @override
+  String get productDetails => 'Product Details';
 }
