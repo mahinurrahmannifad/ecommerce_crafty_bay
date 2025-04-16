@@ -1,11 +1,18 @@
+import 'dart:async';
 import 'package:ecommerce_crafty_bay/core/extensions/localization_extension.dart';
-import 'package:ecommerce_crafty_bay/features/auth/ui/screens/sign_up_screen.dart';
+import 'package:ecommerce_crafty_bay/core/widgets/show_snack_bar_message.dart';
+import 'package:ecommerce_crafty_bay/features/auth/data/models/verify_otp_model.dart';
+import 'package:ecommerce_crafty_bay/features/auth/ui/controllers/verify_otp_controller.dart';
+import 'package:ecommerce_crafty_bay/features/auth/ui/screens/sign_in_screen.dart';
 import 'package:ecommerce_crafty_bay/features/auth/ui/widgets/app_logo.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class VerifyOtpScreen extends StatefulWidget {
-  const VerifyOtpScreen({super.key});
+  const VerifyOtpScreen({super.key, required this.email});
+
+  final String email;
 
   static const String name = '/verify-otp-screen';
 
@@ -15,7 +22,31 @@ class VerifyOtpScreen extends StatefulWidget {
 
 class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   final TextEditingController _otpTEController = TextEditingController();
-  String currentPin = "";
+  final VerifyOtpController _verifyOtpController =
+      Get.find<VerifyOtpController>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  String currentPin = '';
+
+  late RxInt _currentTime;
+
+  void _startTimer() {
+    _currentTime.value = 30;
+
+    Timer.periodic(const Duration(seconds: 30), (timer) {
+      if (_currentTime.value == 0) {
+        timer.cancel();
+      } else {
+        _currentTime.value = _currentTime.value - 1;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,20 +97,44 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                 onChanged: (value) {
                   setState(() {
                     currentPin = value;
+                  });
+                },
+                validator: (String? value) {
+                  if ((value?.length ?? 0) < 4) {
+                    return 'Enter your otp';
                   }
-                  );
-                }
+                  return null;
+                },
               ),
-
-
               const SizedBox(height: 16),
               ElevatedButton(
-                onPressed: () {
-                  _onTapSignUpButton();
-                },
+                onPressed: _onTapVerifyOtpButton,
                 child: Text(context.localization.verify),
               ),
               const SizedBox(height: 24),
+              Obx(() {
+                return Column(
+                  children: [
+                    Visibility(
+                      visible: _currentTime.value == 0,
+                      child: TextButton(
+                        onPressed: () {
+                          // RESEND OTP
+                          _startTimer();
+                        },
+                        child: const Text('Resend Otp'),
+                      ),
+                    ),
+                    Visibility(
+                      visible: _currentTime.value != 0,
+                      child: TextButton(
+                        onPressed: () {},
+                        child: Text('Resend Otp in ${_currentTime.value}'),
+                      ),
+                    ),
+                  ],
+                );
+              }),
             ],
           ),
         ),
@@ -87,13 +142,31 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     );
   }
 
-  void _onTapSignUpButton() {
-    Navigator.pushNamed(context, SignUpScreen.name);
+  // void _onTapSignUpButton() {
+  //   Navigator.pushNamed(context, SignUpScreen.name);
+  // }
+
+  void _onTapVerifyOtpButton() {
+    if (_formKey.currentState!.validate()) {
+      _verifyOtp();
+    }
   }
 
-  @override
-  void dispose() {
-    _otpTEController.dispose();
-    super.dispose();
+  Future<void> _verifyOtp() async {
+    VerifyOtpModel verifyOtpModel = VerifyOtpModel(
+      email: widget.email,
+      otp: _otpTEController.text,
+    );
+    final bool isSuccess = await _verifyOtpController.verifyOtp(verifyOtpModel);
+    if (isSuccess) {
+      showSnackBarMessage(context, 'Otp has been verified! Please login');
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        SignInScreen.name,
+        (predicate) => false,
+      );
+    } else {
+      showSnackBarMessage(context, _verifyOtpController.errorMessage!, true);
+    }
   }
 }
