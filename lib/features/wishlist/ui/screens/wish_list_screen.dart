@@ -1,7 +1,6 @@
-import 'package:ecommerce_crafty_bay/core/extensions/localization_extension.dart';
-import 'package:ecommerce_crafty_bay/features/common/ui/widgets/product_card.dart';
-import 'package:flutter/material.dart';
 
+import 'package:ecommerce_crafty_bay/core/extensions/localization_extension.dart';
+import 'package:flutter/material.dart';
 
 class WishListScreen extends StatelessWidget {
   const WishListScreen({super.key});
@@ -20,7 +19,7 @@ class WishListScreen extends StatelessWidget {
           crossAxisSpacing: 0,
         ),
         itemBuilder: (context, index) {
-          return const FittedBox(child: ProductCard());
+          // return const FittedBox(child: ProductCard());
         },
       ),
     );

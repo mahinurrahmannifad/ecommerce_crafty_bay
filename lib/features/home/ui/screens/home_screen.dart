@@ -1,9 +1,10 @@
-
 import 'package:ecommerce_crafty_bay/app/assets_path.dart';
 import 'package:ecommerce_crafty_bay/core/extensions/localization_extension.dart';
+import 'package:ecommerce_crafty_bay/core/widgets/centered_circular_progress_indicator.dart';
+import 'package:ecommerce_crafty_bay/features/common/controllers/category_controller.dart';
 import 'package:ecommerce_crafty_bay/features/common/controllers/main_bottom_nav_bar_controller.dart';
+import 'package:ecommerce_crafty_bay/features/common/data/models/category_model.dart';
 import 'package:ecommerce_crafty_bay/features/common/ui/widgets/category_item.dart';
-import 'package:ecommerce_crafty_bay/features/common/ui/widgets/product_card.dart';
 import 'package:ecommerce_crafty_bay/features/home/widgets/app_bar_action_button.dart';
 import 'package:ecommerce_crafty_bay/features/home/widgets/home_carousel_slider.dart';
 import 'package:ecommerce_crafty_bay/features/home/widgets/section_header.dart';
@@ -73,28 +74,40 @@ class _HomeScreenState extends State<HomeScreen> {
       scrollDirection: Axis.horizontal,
       child: Row(
         children: [
-          ProductCard(),
-          ProductCard(),
-          ProductCard(),
-          ProductCard(),
+          // ProductCard(),
+          // ProductCard(),
+          // ProductCard(),
+          // ProductCard(),
         ],
       ),
     );
   }
 
   Widget _buildCategoriesSection() {
-    return const SingleChildScrollView(
-      scrollDirection: Axis.horizontal,
-      child: Row(
-        children: [
-          CategoryItem(),
-          CategoryItem(),
-          CategoryItem(),
-          CategoryItem(),
-          CategoryItem(),
-          CategoryItem(),
-        ],
-      ),
+    return GetBuilder<CategoryController>(
+      builder: (controller) {
+        if (controller.isInitialLoading) {
+          return const SizedBox(
+            height: 100,
+            child: CenteredCircularProgressIndicator(),
+          );
+        }
+
+        List<CategoryModel> list =
+            controller.categoryList.length > 10
+                ? controller.categoryList.sublist(0, 10)
+                : controller.categoryList;
+
+        return SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children:
+                list.map((e) {
+                  return CategoryItem(categoryModel: e);
+                }).toList(),
+          ),
+        );
+      },
     );
   }
 
@@ -106,15 +119,9 @@ class _HomeScreenState extends State<HomeScreen> {
         filled: true,
         hintText: 'Search',
         prefixIcon: const Icon(Icons.search),
-        border: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        enabledBorder: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
-        focusedBorder: const OutlineInputBorder(
-          borderSide: BorderSide.none,
-        ),
+        border: const OutlineInputBorder(borderSide: BorderSide.none),
+        enabledBorder: const OutlineInputBorder(borderSide: BorderSide.none),
+        focusedBorder: const OutlineInputBorder(borderSide: BorderSide.none),
       ),
     );
   }
@@ -123,15 +130,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return AppBar(
       title: SvgPicture.asset(AssetsPath.logoNavSvg),
       actions: [
-        AppBarActionButton(
-          icon: Icons.person_outline,
-          onTap: () {},
-        ),
+        AppBarActionButton(icon: Icons.person_outline, onTap: () {}),
         const SizedBox(width: 8),
-        AppBarActionButton(
-          icon: Icons.call,
-          onTap: () {},
-        ),
+        AppBarActionButton(icon: Icons.call, onTap: () {}),
         const SizedBox(width: 8),
         AppBarActionButton(
           icon: Icons.notifications_active_outlined,

@@ -1,18 +1,25 @@
 import 'package:ecommerce_crafty_bay/app/app_colors.dart';
+import 'package:ecommerce_crafty_bay/features/common/data/models/category_model.dart';
 import 'package:ecommerce_crafty_bay/features/products/ui/screens/product_list_screen.dart';
 import 'package:flutter/material.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({
     super.key,
+    required this.categoryModel,
   });
+
+  final CategoryModel categoryModel;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, ProductListScreen.name,
-            arguments: 'Electronics');
+        Navigator.pushNamed(
+          context,
+          ProductListScreen.name,
+          arguments: categoryModel,
+        );
       },
       child: Column(
         children: [
@@ -20,18 +27,18 @@ class CategoryItem extends StatelessWidget {
             margin: const EdgeInsets.symmetric(horizontal: 8),
             color: AppColors.themeColor.withValues(alpha: 0.15),
             elevation: 0,
-            child: const Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Icon(
-                Icons.computer,
-                size: 48,
-                color: AppColors.themeColor,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Image.network(
+                categoryModel.icon,
+                width: 48,
+                height: 48,
               ),
             ),
           ),
-          const Text(
-            'Computers',
-            style: TextStyle(
+          Text(
+            categoryModel.title,
+            style: const TextStyle(
                 color: AppColors.themeColor,
                 fontWeight: FontWeight.w500,
                 fontSize: 16),
@@ -41,3 +48,4 @@ class CategoryItem extends StatelessWidget {
     );
   }
 }
+

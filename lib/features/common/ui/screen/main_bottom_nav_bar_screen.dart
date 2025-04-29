@@ -1,4 +1,6 @@
 import 'package:ecommerce_crafty_bay/features/categories/ui/screens/category_list_screen.dart';
+import 'package:ecommerce_crafty_bay/features/common/controllers/category_controller.dart';
+import 'package:ecommerce_crafty_bay/features/common/controllers/home_slider_controller.dart';
 import 'package:ecommerce_crafty_bay/features/common/controllers/main_bottom_nav_bar_controller.dart';
 import 'package:ecommerce_crafty_bay/features/home/ui/screens/home_screen.dart';
 import 'package:ecommerce_crafty_bay/features/wishlist/ui/screens/wish_list_screen.dart';
@@ -21,6 +23,13 @@ class _MainBottomNavBarScreenState extends State<MainBottomNavBarScreen> {
     const HomeScreen(),
     const WishListScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<HomeSliderController>().getSliders();
+    Get.find<CategoryController>().getCategoryList();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:ecommerce_crafty_bay/features/auth/data/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -43,5 +44,9 @@ class AuthController {
     await sharedPreferences.clear();
     token = null;
     user = null;
+  }
+
+  bool isValidUser() {
+    return token != null;
   }
 }
