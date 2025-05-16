@@ -1,6 +1,5 @@
-
 import 'package:ecommerce_crafty_bay/app/app_colors.dart';
-import 'package:ecommerce_crafty_bay/features/products/data/models/product_model.dart';
+import 'package:ecommerce_crafty_bay/features/common/data/models/product_model.dart';
 import 'package:ecommerce_crafty_bay/features/products/ui/screens/product_details_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -32,7 +31,7 @@ class ProductCard extends StatelessWidget {
                 height: 120,
                 width: 140,
                 decoration: BoxDecoration(
-                color: AppColors.themeColor.withValues(alpha: 0.15),
+                  color: AppColors.themeColor.withOpacity(0.15),
                   borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(8),
                     topRight: Radius.circular(8),

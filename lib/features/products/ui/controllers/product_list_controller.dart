@@ -1,7 +1,7 @@
 
 import 'package:ecommerce_crafty_bay/app/app_urls.dart';
 import 'package:ecommerce_crafty_bay/core/network_caller/network_caller.dart';
-import 'package:ecommerce_crafty_bay/features/products/data/models/product_model.dart';
+import 'package:ecommerce_crafty_bay/features/common/data/models/product_model.dart';
 import 'package:get/get.dart';
 
 class ProductListController extends GetxController {
