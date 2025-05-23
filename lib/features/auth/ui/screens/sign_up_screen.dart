@@ -11,7 +11,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -28,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _phoneTEController = TextEditingController();
   final TextEditingController _passwordTEController = TextEditingController();
   final TextEditingController _deliveryAddressTEController =
-      TextEditingController();
+  TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final SignUpController signUpController = Get.find<SignUpController>();
 
@@ -66,25 +65,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           const SizedBox(height: 32),
           TextFormField(
-            controller: _emailTEController,
-            textInputAction: TextInputAction.next,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(hintText: context.localization.email),
-            validator: (String? value) {
-              String email = value ?? '';
-              if (!EmailValidator.validate(email)) {
-                return 'Enter a valid email';
+              controller: _emailTEController,
+              textInputAction: TextInputAction.next,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(hintText: context.localization.email),
+              validator: (String? value) {
+                String email = value ?? '';
+                if (!EmailValidator.validate(email)) {
+                  return 'Enter a valid email';
+                }
+                return null;
               }
-              return null;
-            },
           ),
           const SizedBox(height: 8),
           TextFormField(
             controller: _firstNameTEController,
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              hintText: context.localization.firstName,
-            ),
+            decoration:
+            InputDecoration(hintText: context.localization.firstName),
             validator: (String? value) {
               if (value?.trim().isEmpty ?? true) {
                 return 'Enter your first name';
@@ -96,9 +94,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           TextFormField(
             controller: _lastNameTEController,
             textInputAction: TextInputAction.next,
-            decoration: InputDecoration(
-              hintText: context.localization.lastName,
-            ),
+            decoration:
+            InputDecoration(hintText: context.localization.lastName),
             validator: (String? value) {
               if (value?.trim().isEmpty ?? true) {
                 return 'Enter your last name';
@@ -124,9 +121,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
           const SizedBox(height: 8),
           TextFormField(
             controller: _passwordTEController,
-            decoration: InputDecoration(
-              hintText: context.localization.password,
-            ),
+            decoration:
+            InputDecoration(hintText: context.localization.password),
             validator: (String? value) {
               if ((value?.isEmpty ?? true) || value!.length < 6) {
                 return 'Enter a password more than 6 letters';
@@ -155,38 +151,35 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
           const SizedBox(height: 16),
           GetBuilder<SignUpController>(
-            builder: (controller) {
-              return Visibility(
-                visible: controller.signUpInProgress == false,
-                replacement: CenteredCircularProgressIndicator(),
-                child: ElevatedButton(
-                  onPressed: _onTapSignUpButton,
-                  child: Text(context.localization.signUp),
-                ),
-              );
-            },
+              builder: (controller) {
+                return Visibility(
+                  visible: controller.signUpInProgress == false,
+                  replacement: const CenteredCircularProgressIndicator(),
+                  child: ElevatedButton(
+                    onPressed: _onTapSignUpButton,
+                    child: Text(context.localization.signUp),
+                  ),
+                );
+              }
           ),
           const SizedBox(height: 24),
           RichText(
             text: TextSpan(
               text: "Already have an account? ",
               style: const TextStyle(
-                color: Colors.grey,
-                fontWeight: FontWeight.w600,
-              ),
+                  color: Colors.grey, fontWeight: FontWeight.w600),
               children: [
                 TextSpan(
-                  text: 'Sign In',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.themeColor,
-                  ),
-                  recognizer:
-                      TapGestureRecognizer()..onTap = _onTapSignInButton,
-                ),
+                    text: 'Sign In',
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.themeColor,
+                    ),
+                    recognizer: TapGestureRecognizer()
+                      ..onTap = _onTapSignInButton),
               ],
             ),
-          ),
+          )
         ],
       ),
     );

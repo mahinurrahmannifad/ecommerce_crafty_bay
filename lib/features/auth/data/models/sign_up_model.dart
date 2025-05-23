@@ -6,22 +6,21 @@ class SignUpModel {
   final String password;
   final String deliveryAddress;
 
-  SignUpModel({
-    required this.email,
-    required this.firstName,
-    required this.lastName,
-    required this.phone,
-    required this.password,
-    required this.deliveryAddress,
-  });
+  SignUpModel(
+      {required this.email,
+        required this.firstName,
+        required this.lastName,
+        required this.phone,
+        required this.password,
+        required this.deliveryAddress});
 
   Map<String, dynamic> toJson() {
     return {
-      "firstName": firstName,
-      "lastName": lastName,
+      "first_name": firstName,
+      "last_name": lastName,
       "email": email,
-      "phone": phone,
       "password": password,
+      "phone": phone,
       "city": deliveryAddress,
     };
   }

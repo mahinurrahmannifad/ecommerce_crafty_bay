@@ -4,8 +4,7 @@ import 'package:ecommerce_crafty_bay/features/auth/ui/controllers/auth_controlle
 import 'package:ecommerce_crafty_bay/features/auth/ui/widgets/app_logo.dart';
 import 'package:ecommerce_crafty_bay/features/common/ui/screen/main_bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});

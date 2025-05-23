@@ -17,9 +17,9 @@ class ControllerBinder extends Bindings{
     Get.put(HomeSliderController());
     Get.put(CategoryController());
     Get.put(MainBottomNavBarController());
-    Get.put(SignUpController());
     Get.put(SignInController());
-    Get.put(() => VerifyOtpController());
-    Get.put(() => CartListController());
+    Get.put(SignUpController());
+    Get.put(VerifyOtpController());
+    Get.put(CartListController());
   }
 }
