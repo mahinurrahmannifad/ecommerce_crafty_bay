@@ -51,7 +51,8 @@ class AppLocalizationsBn extends AppLocalizations {
   String get enterYourOtpCode => 'আপনার ওটিপি কোড লিখুন';
 
   @override
-  String get aFourDigitCodeHasBeenSent => 'আপনার ইমেলে একটি 4 সংখ্যার কোড পাঠানো হয়েছে';
+  String get aFourDigitCodeHasBeenSent =>
+      'আপনার ইমেলে একটি 4 সংখ্যার কোড পাঠানো হয়েছে';
 
   @override
   String get verify => 'যাচাই করুন';

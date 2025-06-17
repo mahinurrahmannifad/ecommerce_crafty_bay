@@ -51,7 +51,8 @@ class AppLocalizationsEn extends AppLocalizations {
   String get enterYourOtpCode => 'Enter Your Otp Code';
 
   @override
-  String get aFourDigitCodeHasBeenSent => 'A 4 digits of code has been sent to your email';
+  String get aFourDigitCodeHasBeenSent =>
+      'A 4 digits of code has been sent to your email';
 
   @override
   String get verify => 'Verify';

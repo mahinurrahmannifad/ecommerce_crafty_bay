@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_crafty_bay/features/auth/ui/screens/sign_in_screen.dart';
 import 'package:ecommerce_crafty_bay/features/cart/ui/screens/cart_list_screen.dart';
 import 'package:ecommerce_crafty_bay/features/categories/ui/screens/category_list_screen.dart';
